@@ -1,11 +1,11 @@
-# Product Review System 🚀  
-**Proyecto de Ingeniería en Informática - Universidad Americana**
+# Product Review System 
+**Proyecto de Modelo de Base de Datos y POO**
 
 Este es el sistema centralizado para la gestión y revisión de productos, desarrollado en Java con persistencia en PostgreSQL.
 
 ---
 
-## 👥 Integrantes y Roles
+## Integrantes y Roles
 
 - **Backend:** Antonella, Fabrizio y Mauri
 - **Frontend:** Nayeli y Nico
