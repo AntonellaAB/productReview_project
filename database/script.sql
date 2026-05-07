@@ -1,43 +1,40 @@
-CREATE TABLE productos (
-    id_producto VARCHAR(200),
-    nombre TEXT,
-    precio NUMERIC(50,0),
-    img_producto VARCHAR(200),
-    enlace VARCHAR(200),
-    resena_recibidas INTEGER,
-    descripcion TEXT,
-    id_proveedor VARCHAR(200)
+
+--Primero va categoria
+CREATE TABLE category (
+	id_category SERIAL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL,
+	description TEXT
+
 );
 
 
-CREATE TABLE proveedores (
-    id_proveedor VARCHAR(200),
-    empresa VARCHAR(50),
-    nombre TEXT,
-    usuario_proveedor VARCHAR(50),
-    email VARCHAR(50),
-    contrasena VARCHAR(200),
-    cantidad_producto INTEGER,
-    enlace_empresa VARCHAR(200),
-    productos_listados VARCHAR(1000)[], -- Este es un array de strings
-    fk_productos VARCHAR(200)
+-- PRODUCTOS / cada producto tiene una catogoria
+CREATE TABLE products (
+    id_product SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    img_url VARCHAR(255), ---BUSCAR CUAL ES MEJOR PARA FOTOS
+    brand VARCHAR(100),
+	id_category INTEGER REFERENCES category(id_category) ON DELETE SET NULL
 );
 
 
-
-CREATE TABLE tokens (
-    id_tokens VARCHAR(200),
-    token VARCHAR(200),
-    plataforma TEXT
+CREATE TABLE users (
+    id_user SERIAL PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+	signup_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    
 );
 
+--REVIEWS
+CREATE TABLE reviews (
+	id_review SERIAL PRIMARY KEY,
+	comment TEXT, 
+	score INTEGER CHECK (score BETWEEN 1 AND 5), --CHECK se usa para controlar que sea el rengo declarado
+	review_date TIMESTAMP CURRENT_TIMESTAMP, --buscar como poner fecha actual
+	id_users INTEGER REFERENCES users(id_users)	ON DELETE CASCADE,
+	id_product INTEGER REFERENCES proi
+)
 
-CREATE TABLE usuarios (
-    id_usuario INTEGER,
-    nombre VARCHAR(200),
-    email VARCHAR(100),
-    contrasena VARCHAR(200),
-    cantidad_resena INTEGER,
-    fecha_creacion DATE,
-    fk_productos VARCHAR(200)
-);
