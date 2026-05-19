@@ -1,6 +1,10 @@
+DROP TABLE IF EXISTS reviews CASCADE;
+DROP TABLE IF EXISTS products CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
 
 --Primero va categoria
-CREATE TABLE category (
+CREATE TABLE categories (
 	id_category SERIAL PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,
 	description TEXT
@@ -13,9 +17,9 @@ CREATE TABLE products (
     id_product SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT,
-    img_url VARCHAR(255), ---BUSCAR CUAL ES MEJOR PARA FOTOS
+    image_url VARCHAR(255),
     brand VARCHAR(100),
-	id_category INTEGER REFERENCES category(id_category) ON DELETE SET NULL
+	id_category INTEGER REFERENCES categories(id_category) ON DELETE SET NULL
 );
 
 
@@ -28,13 +32,17 @@ CREATE TABLE users (
     
 );
 
+
 --REVIEWS
 CREATE TABLE reviews (
 	id_review SERIAL PRIMARY KEY,
 	comment TEXT, 
-	score INTEGER CHECK (score BETWEEN 1 AND 5), --CHECK se usa para controlar que sea el rengo declarado
-	review_date TIMESTAMP CURRENT_TIMESTAMP, --buscar como poner fecha actual
-	id_users INTEGER REFERENCES users(id_users)	ON DELETE CASCADE,
-	id_product INTEGER REFERENCES proi
-)
+	score INTEGER NOT NULL CHECK (score BETWEEN 1 AND 5), --CHECK se usa para controlar que sea el rengo declarado
+	review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+	id_user INTEGER NOT NULL REFERENCES users(id_user),
+	id_product INTEGER NOT NULL REFERENCES products(id_product),
+	UNIQUE(id_user, id_product)
+);
 
+
+ALTER TABLE products ADD COLUMN price NUMERIC(12,2);

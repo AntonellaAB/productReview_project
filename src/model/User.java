@@ -6,6 +6,7 @@ public class User {
     private int idUser;             // identificador id de usuario
     private String username;        //nombre de usuario
     private String password;        //contrasena
+    private String email;
     
     
     //setters y getters de cada uno ************************************************
@@ -38,7 +39,13 @@ public class User {
     }
     
     
+    public void setEmail(String email){
+        this.email = email;
+    }
     
+    public String getEmail(){
+        return email;
+    }
     
     //METODOS *******************************************************************
     public void logIn(){
