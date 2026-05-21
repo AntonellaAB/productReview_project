@@ -1,6 +1,13 @@
-/*
 
- */
+/*
+metodos: 
+    publicar()
+    edit()
+    eliminar()
+
+*/
+
+
 package dao;
 
 /**

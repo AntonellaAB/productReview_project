@@ -12,7 +12,7 @@ public class UserDAO {
     //METODO PARA CREAR USUARIOS
     public void createUser(User user){ //user es un tipo de dato
         
-        String SQL = "iNSERT INTO users(username, email, password) VALUES (?, ?, ?)"; //LOS ? SON PLACEHOLDERS
+        String SQL = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)"; //LOS ? SON PLACEHOLDERS
         try (Connection conn = conexionDB.conectar(); //Nos conectamos  
             PreparedStatement stmt = conn.prepareStatement(SQL);){ 
             
@@ -31,6 +31,20 @@ public class UserDAO {
     }
     
     
-    //METODO PARA ACCEDER A LOS USUARIOS - mostrar los usuarios
+    //METODO PARA ACCEDER - login
+    public void login() {
+        String SQL = null;//"SELECT username, password FROM users";
+        
+        try (Connection conn = conexionDB.conectar();   
+            PreparedStatement stmt = conn.prepareStatement(SQL);){
+            
+            
+            
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        
+    }
     
 }

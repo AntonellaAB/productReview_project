@@ -61,10 +61,5 @@ atributos :
     comentarios 
     calificaciones
     fecha: DATE
-
-metodos: 
-    publicar()
-    edit()
-    eliminar()
-
 */
+    

@@ -6,8 +6,10 @@ public class Product {
     private int idProduct;
     private String name;        //nombre
     private String description; //breve descripcion de que es
+    private String imageUrl;
     private double price;       //precio
     private String brand;       //marca
+    private Category category;
     
     
     //Getters y setters 
@@ -40,6 +42,15 @@ public class Product {
     }
     
     
+    public void setImageUrl(String image){
+        this.imageUrl = image;
+    }
+    
+    public String getImageUrl(){
+        return imageUrl;
+    }
+    
+    
     
     public void setPrice(double price){
         this.price = price;
@@ -55,37 +66,21 @@ public class Product {
         this.brand = brand;
     }
     
+    
     public String getBrand(){
         return brand;
     }
     
-    
-    
-    
-    //METODOS *******************************************************************
-        //mostrar detalles de los productos
-    public void showDetails(){
+    // CATEGORY
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
     
-    
-        //Promedio de las resenas
-    public void reviewAverage(){    
-    }
     
 }
 
-
-/*
-clase Producto: 
-atributos: 
-    idProducto
-    nombre
-    description
-    precio
-    marca
-metodos:
-    mostrar detalle
-    promedio de resenas
-
-
-*/
