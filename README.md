@@ -110,7 +110,8 @@ Si no aparecen datos, configurar:
 1. **Clonar el repositorio**
 
 Ubicarse dentro de la carpeta donde se guardará el proyecto y ejecutar:
-    git clone https://github.com/AntonellaAB/product-review-system.git
+
+    git clone https://github.com/AntonellaAB/productReview_project
 
 2. **Verificar que se descargó correctamente**
 
