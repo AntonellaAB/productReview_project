@@ -18,6 +18,7 @@ INSERT INTO products(name, description, image_url, brand, id_category, price) VA
 ('Chaqueta impermeable', 'Chaqueta ligera, resistente al agua.', 'https://example.com/img/chaqueta.jpg', 'OutdoorPro', (SELECT id_category FROM categories WHERE name='Ropa'), 89.90);
 
 -- USERS
+/*
 INSERT INTO users(username, email, password) VALUES
 ('ana', 'ana@example.com', 'passAna123'),
 ('juan', 'juan@example.com', 'passJuan123'),
@@ -35,9 +36,9 @@ INSERT INTO reviews(comment, score, id_user, id_product) VALUES
 ('Crema fantástica para piel seca.', 5, (SELECT id_user FROM users WHERE username='ana'), (SELECT id_product FROM products WHERE name='Crema facial hidratante')),
 ('Novela atrapante, la leí en dos noches.', 5, (SELECT id_user FROM users WHERE username='juan'), (SELECT id_product FROM products WHERE name='Novela de misterio')),
 ('La chaqueta es impermeable pero talla pequeña.', 4, (SELECT id_user FROM users WHERE username='maria'), (SELECT id_product FROM products WHERE name='Chaqueta impermeable'));
-
+*/
 -- Asegurar secuencias correctas (PostgreSQL)
 SELECT setval(pg_get_serial_sequence('categories','id_category'), COALESCE((SELECT MAX(id_category) FROM categories),0) );
 SELECT setval(pg_get_serial_sequence('products','id_product'), COALESCE((SELECT MAX(id_product) FROM products),0) );
-SELECT setval(pg_get_serial_sequence('users','id_user'), COALESCE((SELECT MAX(id_user) FROM users),0) );
-SELECT setval(pg_get_serial_sequence('reviews','id_review'), COALESCE((SELECT MAX(id_review) FROM reviews),0) );
+--SELECT setval(pg_get_serial_sequence('users','id_user'), COALESCE((SELECT MAX(id_user) FROM users),0) );
+--SELECT setval(pg_get_serial_sequence('reviews','id_review'), COALESCE((SELECT MAX(id_review) FROM reviews),0) );
