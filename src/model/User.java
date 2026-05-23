@@ -47,17 +47,6 @@ public class User {
         return email;
     }
     
-    //METODOS *******************************************************************
-    public void logIn(){
-    }
-    
-    
-    public void writeReview(){
-    }
-    
-    
-    public void editReview(){
-    }
     
 }
 

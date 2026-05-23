@@ -5,7 +5,7 @@ aqui debe ir el createUser()
 package dao;
 import db.conexionDB;
 import model.User;
-
+import utils.HashUtil;
 import java.sql.*;       
 
 public class UserDAO {
@@ -18,7 +18,10 @@ public class UserDAO {
             
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getEmail());
-            stmt.setString(3, user.getPassword());
+            
+            //hash password
+            String hashedPassword = HashUtil.hashPassword(user.getPassword());
+            stmt.setString(3, hashedPassword);  
 
             stmt.executeUpdate();
 
@@ -31,20 +34,30 @@ public class UserDAO {
     }
     
     
-    //METODO PARA ACCEDER - login
-    public void login() {
-        String SQL = null;//"SELECT username, password FROM users";
-        
-        try (Connection conn = conexionDB.conectar();   
-            PreparedStatement stmt = conn.prepareStatement(SQL);){
-            
-            
-            
-        } catch (Exception e){
-            System.out.println(e.getMessage());
+        //METODO PARA ACCEDER - login
+        public boolean login(String username, String password) {
+            String SQL = "SELECT password FROM users WHERE username = ?";
+
+            try (Connection conn = conexionDB.conectar();   
+                PreparedStatement stmt = conn.prepareStatement(SQL);){
+
+                stmt.setString(1, username);
+
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()){
+
+                    String storedHash = rs.getString("password"); //buscamos el hash guardado
+                    String inputHash = HashUtil.hashPassword(password); //convertimos a hash el passwd ingresado 
+
+                    return storedHash.equals(inputHash); //comparamos lo hashes 
+                }
+
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+
+            return false;
         }
-        
-        
-    }
     
 }

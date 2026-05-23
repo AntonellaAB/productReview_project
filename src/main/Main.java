@@ -6,21 +6,31 @@ package main;
 import db.conexionDB;
 
 import dao.UserDAO;
+
 import model.User;
 
 public class Main {
     
     public static void main(String[] args) {
-
+        /*crear un nuevo usuario
+        
         User user = new User();
 
-        user.setUsername("Antonella");
-        user.setEmail("antonella@gmail.com");
+        user.setUsername("Nayeli");
+        user.setEmail("NayeliB@gmail.com");
         user.setPassword("1234");
 
         UserDAO dao = new UserDAO();
 
         dao.createUser(user); //Le pasa el objeto User al DAO.
+        */
+        
+        
+        //Probar el login 
+        UserDAO dao = new UserDAO();
+        boolean access = dao.login("Nayeli", "1234");
+
+        System.out.println(access);
 
     }
 }
