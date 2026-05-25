@@ -16,7 +16,7 @@ public class CategoryDAO {
 
         List<Category> categories = new ArrayList<>();
 
-        String SQL = "SELECT id_category, name, description FROM categories";
+        String SQL = "SELECT id_category, name, description FROM categories ORDER BY id_category";
 
         try (
             Connection conn = conexionDB.conectar();
