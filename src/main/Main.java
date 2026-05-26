@@ -8,6 +8,7 @@ import db.conexionDB;
 import dao.UserDAO;
 
 import model.User;
+import ui.Login;
 
 public class Main {
     
@@ -25,12 +26,25 @@ public class Main {
         dao.createUser(user); //Le pasa el objeto User al DAO.
         */
         
-        
+        /*
         //Probar el login 
         UserDAO dao = new UserDAO();
         boolean access = dao.login("Nayeli", "1234");
 
         System.out.println(access);
-
+    */
+        
+    
+       // Smoothly launch the UI inside Java's Event Dispatch Thread
+        java.awt.EventQueue.invokeLater(() -> {
+        // Instantiate the login class we just built
+        Login loginWindow = new Login();
+            
+        // Force it to become visible to the user
+        loginWindow.setVisible(true);
+    });
+    
+        
+        
     }
 }
