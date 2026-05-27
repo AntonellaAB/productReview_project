@@ -1,18 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package main;
-import db.conexionDB;
+//import db.conexionDB;
 
 import dao.UserDAO;
+import ui.Login;
+//import model.User;
 
-import model.User;
 
 public class Main {
     
     public static void main(String[] args) {
-        /*crear un nuevo usuario
+        java.awt.EventQueue.invokeLater(() -> {
+            // 1. Instanciamos la ventana del Login
+            Login ventanaLogin = new Login();
+            
+            // 2. La hacemos visible en la pantalla
+            ventanaLogin.setVisible(true);
+        });
+        
+        /*
+        crear un nuevo usuario
         
         User user = new User();
 
@@ -23,7 +30,7 @@ public class Main {
         UserDAO dao = new UserDAO();
 
         dao.createUser(user); //Le pasa el objeto User al DAO.
-        */
+        
         
         
         //Probar el login 
@@ -31,6 +38,9 @@ public class Main {
         boolean access = dao.login("Nayeli", "1234");
 
         System.out.println(access);
-
+        */
+        
+        
+        
     }
 }
