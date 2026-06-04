@@ -1,9 +1,7 @@
-/*
-Este archivo habla con la tabla de usuarios
-aqui debe ir el createUser()
- */
+
 package dao;
-import db.conexionDB;
+
+import db.conexionDB; //comunique con la bd
 import model.User;
 import utils.HashUtil;
 import java.sql.*;       

@@ -1,7 +1,7 @@
 
 package utils;
 /**
-CLAS PARA EL HASH SHA-256
+CLASE PARA EL HASH SHA-256
  */
 import java.security.MessageDigest;
 
