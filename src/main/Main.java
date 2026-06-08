@@ -1,19 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package main;
-import db.conexionDB;
+//import db.conexionDB;
 
 import dao.UserDAO;
+<<<<<<< HEAD
 import model.User;
 import dao.ReviewDAO;
 import model.Review;
+=======
+import ui.Login;
+//import model.User;
+
+>>>>>>> origin/main
 
 public class Main {
     
     public static void main(String[] args) {
+<<<<<<< HEAD
         /*/crear un nuevo usuario
+=======
+        java.awt.EventQueue.invokeLater(() -> {
+            // 1. Instanciamos la ventana del Login
+            Login ventanaLogin = new Login();
+            
+            // 2. La hacemos visible en la pantalla
+            ventanaLogin.setVisible(true);
+        });
+        
+        /*
+        crear un nuevo usuario
+>>>>>>> origin/main
         
         User user = new User();
         user.setUsername("Fabrizio");
@@ -23,6 +39,10 @@ public class Main {
         UserDAO dao = new UserDAO();
 
         dao.createUser(user); //Le pasa el objeto User al DAO.
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin/main
         
         
         
@@ -31,6 +51,7 @@ public class Main {
         boolean access = dao.login("Fabrizio", "a");
         System.out.println(access);
         */
+<<<<<<< HEAD
         System.out.println("=== INICIANDO PRUEBA DEL ALGORITMO DE REVIEWS ===");
         
         // 1. Creamos el objeto con datos de prueba
@@ -57,5 +78,10 @@ public class Main {
         } else {
             System.out.println("=== PRUEBA FALLIDA: Revisa las letras rojas del error ===");
         }
+=======
+        
+        
+        
+>>>>>>> origin/main
     }
 }

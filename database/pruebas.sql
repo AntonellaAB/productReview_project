@@ -15,3 +15,6 @@ GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO review_app_user;
 
 SELECT * FROM users;
 SELECT * FROM products;
+SELECT * FROM categories;
+SELECT * FROM users WHERE id_user = 2;
+DELETE FROM users WHERE id_user = 2;
