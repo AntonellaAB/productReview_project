@@ -93,24 +93,22 @@ public class Menu extends javax.swing.JFrame {
         subPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         icon3 = new javax.swing.JLabel();
-<<<<<<< HEAD
+
         subPanel4 = new javax.swing.JPanel();
         icon4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-=======
->>>>>>> origin/Fabri
+
         subPanel5 = new javax.swing.JPanel();
         icon5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         subPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         icon6 = new javax.swing.JLabel();
-<<<<<<< HEAD
-=======
+
         subPanel4 = new javax.swing.JPanel();
         icon4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
->>>>>>> origin/Fabri
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,11 +117,10 @@ public class Menu extends javax.swing.JFrame {
         btnMenu.setBackground(new java.awt.Color(50, 74, 129));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMenu.setForeground(new java.awt.Color(255, 255, 255));
-<<<<<<< HEAD
+
         btnMenu.setText("jButton1");
-=======
         btnMenu.setText("Menú");
->>>>>>> origin/Fabri
+
         btnMenu.setBorder(null);
         btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMenu.setFocusable(false);
@@ -176,7 +173,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.add(subPanel3);
 
-<<<<<<< HEAD
+
         subPanel4.setBackground(new java.awt.Color(255, 255, 255));
         subPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
         subPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -192,8 +189,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.add(subPanel4);
 
-=======
->>>>>>> origin/Fabri
+
         subPanel5.setBackground(new java.awt.Color(255, 255, 255));
         subPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
         subPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -224,8 +220,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.add(subPanel6);
 
-<<<<<<< HEAD
-=======
+
         subPanel4.setBackground(new java.awt.Color(255, 255, 255));
         subPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
         subPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -241,7 +236,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.add(subPanel4);
 
->>>>>>> origin/Fabri
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -249,37 +244,37 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-<<<<<<< HEAD
+
                         .addGap(55, 55, 55)
                         .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-=======
+
                         .addGap(83, 83, 83)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
->>>>>>> origin/Fabri
+
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-<<<<<<< HEAD
+
                 .addGap(46, 46, 46)
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(43, Short.MAX_VALUE))
-=======
+
                 .addGap(24, 24, 24)
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(69, Short.MAX_VALUE))
->>>>>>> origin/Fabri
+
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
