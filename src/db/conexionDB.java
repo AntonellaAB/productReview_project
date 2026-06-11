@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class conexionDB {
     
-    private static final String URL = "jdbc:postgresql://localhost:5432/Review";
+    private static final String URL = "jdbc:postgresql://localhost:5432/product_review_db";
     //URL - JDBC java Database Connectivity : hay que descargar el driver 
 
     private static final String USER = "review_app_user";
