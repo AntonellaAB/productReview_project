@@ -1,4 +1,3 @@
-
 package ui;
 
 import javax.swing.JOptionPane;
@@ -23,7 +22,6 @@ public class Menu extends javax.swing.JFrame {
     private void OptionsMenu(){
         optionsMenu = new javax.swing.JPopupMenu();  
         
-
         javax.swing.JMenuItem itemProfile = new javax.swing.JMenuItem("Mi Información Personal");
         javax.swing.JMenuItem itemReviews = new javax.swing.JMenuItem("Mis Reseñas");
         javax.swing.JMenuItem itemSearch = new javax.swing.JMenuItem("Buscar");
@@ -37,7 +35,6 @@ public class Menu extends javax.swing.JFrame {
                     + "\n Ivo Vallejos - CI: 5.100.144", "Créditos", JOptionPane.INFORMATION_MESSAGE);
         });
         
-       
         optionsMenu.add(itemProfile);
         optionsMenu.add(itemReviews);
         optionsMenu.add(itemSearch);
@@ -51,10 +48,10 @@ public class Menu extends javax.swing.JFrame {
         if (imgURL != null) {
             javax.swing.ImageIcon iconoOriginal = new javax.swing.ImageIcon(imgURL);
             java.awt.Image imagenOriginal = iconoOriginal.getImage();
-
+            
             java.awt.Image imagenEscalada = imagenOriginal.getScaledInstance(ancho, alto, java.awt.Image.SCALE_SMOOTH);
             label.setIcon(new javax.swing.ImageIcon(imagenEscalada));
-
+            
             label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             label.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
         } else {
@@ -93,22 +90,15 @@ public class Menu extends javax.swing.JFrame {
         subPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         icon3 = new javax.swing.JLabel();
-
-        subPanel4 = new javax.swing.JPanel();
-        icon4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-
         subPanel5 = new javax.swing.JPanel();
         icon5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         subPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         icon6 = new javax.swing.JLabel();
-
         subPanel4 = new javax.swing.JPanel();
         icon4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,10 +107,7 @@ public class Menu extends javax.swing.JFrame {
         btnMenu.setBackground(new java.awt.Color(50, 74, 129));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMenu.setForeground(new java.awt.Color(255, 255, 255));
-
-        btnMenu.setText("jButton1");
         btnMenu.setText("Menú");
-
         btnMenu.setBorder(null);
         btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMenu.setFocusable(false);
@@ -173,23 +160,6 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.add(subPanel3);
 
-
-        subPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        subPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
-        subPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/beauty_icon.png"))); // NOI18N
-        subPanel4.add(icon4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 180, 120));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Belleza");
-        jLabel5.setAlignmentX(0.5F);
-        subPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 250, 20));
-
-        jPanel2.add(subPanel4);
-
-
         subPanel5.setBackground(new java.awt.Color(255, 255, 255));
         subPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
         subPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -220,7 +190,6 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.add(subPanel6);
 
-
         subPanel4.setBackground(new java.awt.Color(255, 255, 255));
         subPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
         subPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -236,7 +205,6 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.add(subPanel4);
 
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -244,37 +212,21 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-
-                        .addGap(55, 55, 55)
-                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-
                         .addGap(83, 83, 83)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-
-                .addGap(46, 46, 46)
-                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
-
                 .addGap(24, 24, 24)
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(69, Short.MAX_VALUE))
-
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
