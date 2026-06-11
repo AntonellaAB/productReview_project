@@ -23,19 +23,21 @@ public class Menu extends javax.swing.JFrame {
     private void OptionsMenu(){
         optionsMenu = new javax.swing.JPopupMenu();  
         
-        // Opciones futuras - ahora mismo estan deshabilitadas
+
         javax.swing.JMenuItem itemProfile = new javax.swing.JMenuItem("Mi Información Personal");
         javax.swing.JMenuItem itemReviews = new javax.swing.JMenuItem("Mis Reseñas");
         javax.swing.JMenuItem itemSearch = new javax.swing.JMenuItem("Buscar");
         
         
         javax.swing.JMenuItem itemCredits = new javax.swing.JMenuItem("Créditos");
-        // Evento para los créditos
         itemCredits.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Paraguay Review - Versión 1.0\nDesarrollado por el Equipo de Backend & PM", "Créditos", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Paraguay Review - Versión 1.0\nDesarrollado por el Equipo de Backend & PM"
+                    + "\n Mauricio Agüero - CI: 5.285.627 \n Nayeli Bernal - CI: 5.664.170 \n Antonella Garay - CI: 5.644.950 \n Ezequiel Gonzalez - CI: 5.932.597 "
+                    + "\n Fabrizio Mazó - CI: 5.708.103 \n Francisco Núñez - CI: 5.728.021 \n Matias Ojeda - CI: 5.643.062 \n Jorge Ríos - CI: 6.547.706 "
+                    + "\n Ivo Vallejos - CI: 5.100.144", "Créditos", JOptionPane.INFORMATION_MESSAGE);
         });
         
-        // Agregamos los items al menú desplegable
+       
         optionsMenu.add(itemProfile);
         optionsMenu.add(itemReviews);
         optionsMenu.add(itemSearch);
@@ -49,12 +51,10 @@ public class Menu extends javax.swing.JFrame {
         if (imgURL != null) {
             javax.swing.ImageIcon iconoOriginal = new javax.swing.ImageIcon(imgURL);
             java.awt.Image imagenOriginal = iconoOriginal.getImage();
-            
-            // Escalado suave de la imagen
+
             java.awt.Image imagenEscalada = imagenOriginal.getScaledInstance(ancho, alto, java.awt.Image.SCALE_SMOOTH);
             label.setIcon(new javax.swing.ImageIcon(imagenEscalada));
-            
-            // Forzamos a que el contenido se alinee al centro del Jlabel
+
             label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             label.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
         } else {
@@ -63,7 +63,6 @@ public class Menu extends javax.swing.JFrame {
     }
 
     private void escalarTodosLosIconos() {
-        // Dimensiones ideales para tus iconos dentro de las tarjetas (puedes ajustarlas si quieres)
         int anchoIcono = 140; 
         int altoIcono = 110;
 
@@ -94,15 +93,24 @@ public class Menu extends javax.swing.JFrame {
         subPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         icon3 = new javax.swing.JLabel();
+<<<<<<< HEAD
         subPanel4 = new javax.swing.JPanel();
         icon4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+=======
+>>>>>>> origin/Fabri
         subPanel5 = new javax.swing.JPanel();
         icon5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         subPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         icon6 = new javax.swing.JLabel();
+<<<<<<< HEAD
+=======
+        subPanel4 = new javax.swing.JPanel();
+        icon4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+>>>>>>> origin/Fabri
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +119,11 @@ public class Menu extends javax.swing.JFrame {
         btnMenu.setBackground(new java.awt.Color(50, 74, 129));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMenu.setForeground(new java.awt.Color(255, 255, 255));
+<<<<<<< HEAD
         btnMenu.setText("jButton1");
+=======
+        btnMenu.setText("Menú");
+>>>>>>> origin/Fabri
         btnMenu.setBorder(null);
         btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMenu.setFocusable(false);
@@ -164,6 +176,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.add(subPanel3);
 
+<<<<<<< HEAD
         subPanel4.setBackground(new java.awt.Color(255, 255, 255));
         subPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
         subPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -179,6 +192,8 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.add(subPanel4);
 
+=======
+>>>>>>> origin/Fabri
         subPanel5.setBackground(new java.awt.Color(255, 255, 255));
         subPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
         subPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -209,6 +224,24 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.add(subPanel6);
 
+<<<<<<< HEAD
+=======
+        subPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        subPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
+        subPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/beauty_icon.png"))); // NOI18N
+        subPanel4.add(icon4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 180, 120));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Belleza");
+        jLabel5.setAlignmentX(0.5F);
+        subPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 250, 20));
+
+        jPanel2.add(subPanel4);
+
+>>>>>>> origin/Fabri
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -216,21 +249,37 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(55, 55, 55)
                         .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+=======
+                        .addGap(83, 83, 83)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+>>>>>>> origin/Fabri
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(46, 46, 46)
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(43, Short.MAX_VALUE))
+=======
+                .addGap(24, 24, 24)
+                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
+>>>>>>> origin/Fabri
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

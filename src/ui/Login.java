@@ -226,10 +226,8 @@ public class Login extends javax.swing.JFrame {
         boolean esValido = userDAO.login(username, password);
         if (esValido){
             JOptionPane.showMessageDialog(this, "Bienvenido!", "Login Exitoso", JOptionPane.INFORMATION_MESSAGE);
-            // TODO: Aca se debe abrir el menu
-            // Ejemplo: 
-            // Dashboard principal = new Dashboard();
-            // principal.setVisible(true);
+            Menu menu = new Menu();
+            menu.setVisible(true);
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Error de autenticación",JOptionPane.ERROR_MESSAGE);
