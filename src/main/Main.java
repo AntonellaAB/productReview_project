@@ -8,8 +8,9 @@ import ui.Login;
 
 
 public class Main {
-
+   
     public static void main(String[] args) {
+        
         java.awt.EventQueue.invokeLater(() -> {
             // 1. Instanciamos la ventana del Login
             Login ventanaLogin = new Login();
@@ -23,9 +24,9 @@ public class Main {
 
         User user = new User();
 
-        user.setUsername("Fabri");
-        user.setEmail("pepeantonio45@gmail.com");
-        user.setPassword("1234");
+        user.setUsername("Anto");
+        user.setEmail("Lilostich@gmail.com");
+        user.setPassword("hola");
 
         UserDAO dao = new UserDAO();
 

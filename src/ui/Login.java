@@ -205,7 +205,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserActionPerformed
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
-        
+        SignUp createUser = new SignUp();
+        createUser.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSignInActionPerformed
 
     //Metodo para iniciar sesion
