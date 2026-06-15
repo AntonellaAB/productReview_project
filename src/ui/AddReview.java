@@ -12,7 +12,7 @@ package ui;
  *
  * @author fabri
  */
-public class AddReview extends javax.swing.JFrame {
+public class AddReview extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AddReview.class.getName());
 
@@ -22,13 +22,18 @@ public class AddReview extends javax.swing.JFrame {
     // Creamos variables arriba en la clase para guardar los datos recibidos
     private Product productoSeleccionado;
     private User usuarioLogueado;
+    public AddReview() {
+        initComponents();
+    }
 
-    // Modificamos el constructor para recibir los datos desde la otra pantalla
-    public AddReview(Product producto, User usuario) {
-    this.productoSeleccionado = producto;
-    this.usuarioLogueado = usuario;
-    initComponents(); // Esto ya lo tienes, déjalo ahí
-}
+    public AddReview(java.awt.Dialog parent, boolean modal, Product producto, User usuario) {
+        super(parent, modal);
+        this.productoSeleccionado = producto;
+        this.usuarioLogueado = usuario;
+        initComponents();
+        lblReseña.setText(productoSeleccionado.getName());
+        setLocationRelativeTo(parent);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,8 +48,11 @@ public class AddReview extends javax.swing.JFrame {
         txtComment = new javax.swing.JTextArea();
         cmbScore = new javax.swing.JComboBox<>();
         btnSend = new javax.swing.JButton();
+        lblPuntaje = new javax.swing.JLabel();
+        lblTituloReseña = new javax.swing.JLabel();
+        lblReseña = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         txtComment.setColumns(20);
         txtComment.setRows(5);
@@ -55,25 +63,45 @@ public class AddReview extends javax.swing.JFrame {
         btnSend.setText("Enviar Reseña");
         btnSend.addActionListener(this::btnSendActionPerformed);
 
+        lblPuntaje.setText("Puntaje");
+
+        lblTituloReseña.setText("Producto:");
+
+        lblReseña.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                .addComponent(cmbScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSend)
                 .addGap(109, 109, 109))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(lblTituloReseña)
+                .addGap(18, 18, 18)
+                .addComponent(lblReseña)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPuntaje)
+                    .addComponent(cmbScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(135, 135, 135))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(149, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTituloReseña)
+                    .addComponent(lblReseña))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(lblPuntaje)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cmbScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -95,7 +123,9 @@ public class AddReview extends javax.swing.JFrame {
         // 2. Creamos un objeto Review vacío y le llenamos los datos
         Review nuevaReview = new Review();
         nuevaReview.setComments(comentario); // Guarda el texto
-        nuevaReview.setScore(puntaje);       // Guarda la nota (1 al 5)
+        nuevaReview.setScore(puntaje); 
+        nuevaReview.setUser(usuarioLogueado);
+        nuevaReview.setProduct(productoSeleccionado);// Guarda la nota (1 al 5)
         // Nota: Aquí tu compañero te pasará luego el id_product seleccionado
 
         // 3. Usamos el DAO (el mensajero de la Base de Datos) para guardarlo
@@ -134,6 +164,9 @@ public class AddReview extends javax.swing.JFrame {
     private javax.swing.JButton btnSend;
     private javax.swing.JComboBox<String> cmbScore;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblPuntaje;
+    private javax.swing.JLabel lblReseña;
+    private javax.swing.JLabel lblTituloReseña;
     private javax.swing.JTextArea txtComment;
     // End of variables declaration//GEN-END:variables
 }

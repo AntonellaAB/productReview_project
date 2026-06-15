@@ -10,6 +10,8 @@ public class Product {
     private double price;       //precio
     private String brand;       //marca
     private Category category;
+    private double averageScore;
+
     
     
     //Getters y setters 
@@ -80,7 +82,12 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-    
+    public double getAverageScore() {
+        return averageScore;
+    }
+    public void setAverageScore(double averageScore) {
+        this.averageScore = averageScore;
+    }
     
 }
 

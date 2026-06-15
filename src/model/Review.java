@@ -7,7 +7,8 @@ public class Review {
     private int idReview;       // id resena
     private String comments;    // comentarios
     private int score;          // calificaciones del 1 al 5
-    private User user;          // <--- NUEVO: Relación con el usuario
+    private User user;
+    private Product product;   // <--- NUEVO: Relación con el usuario
     
     // setting time
     LocalDateTime date = LocalDateTime.now();
@@ -52,7 +53,16 @@ public class Review {
     public User getUser(){
         return user;
     }
+    public Product getProduct() {
+    return product;
 }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+}
+
+
 
 /*
 clase de resena (REVIEW)

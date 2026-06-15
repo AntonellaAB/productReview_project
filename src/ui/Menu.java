@@ -1,5 +1,10 @@
 package ui;
-
+import dao.CategoryDAO;
+import dao.ProductDAO;
+import model.Category;
+import model.Product;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 
 
@@ -7,6 +12,7 @@ public class Menu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Menu.class.getName());
     private javax.swing.JPopupMenu optionsMenu;
+    private boolean cargandoCategorias = false;
     
     public Menu() {
         initComponents();
@@ -15,10 +21,76 @@ public class Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         OptionsMenu();
-        escalarTodosLosIconos();
+        //escalarTodosLosIconos();
+        cargarCategorias();
+        cargarTodosLosProductos();
+        btnAgregarProducto.setEnabled(false);
+        btnAgregarCategoria.setEnabled(false);
     }
     
+    private void cargarCategorias() {
+        cargandoCategorias = true;
+
+        CategoryDAO categoryDAO = new CategoryDAO();
+        List<Category> categorias = categoryDAO.listCategories();
+
+        cmbCategorias.removeAllItems();
+        cmbCategorias.addItem("Todas las categorías");
+
+        for (Category categoria : categorias) {
+            cmbCategorias.addItem(categoria.getName());
+        }
+
+        cargandoCategorias = false;
+    }
     
+    private void cargarTodosLosProductos() {
+        ProductDAO productDAO = new ProductDAO();
+
+        List<Product> productos = productDAO.listProducts();
+
+        cargarTablaProductos(productos);
+    }
+    
+    private void cargarProductosPorCategoria(int idCategory) {
+        ProductDAO productDAO = new ProductDAO();
+
+        List<Product> productos =
+                productDAO.listProductsByCategory(idCategory);
+
+        cargarTablaProductos(productos);
+    }
+    
+    private void cargarTablaProductos(List<Product> productos) {
+        DefaultTableModel modelo = new DefaultTableModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Producto");
+        modelo.addColumn("Marca");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Categoría");
+        modelo.addColumn("Puntaje");
+
+        for (Product producto : productos) {
+            modelo.addRow(new Object[]{
+            producto.getIdProduct(),
+            producto.getName(),
+            producto.getBrand(),
+            producto.getPrice(),
+            producto.getCategory() != null
+                    ? producto.getCategory().getName()
+                    : "",
+            producto.getAverageScore()
+        });
+        }
+
+        tblProductos.setModel(modelo);
+
+        // Ocultar columna ID
+        tblProductos.getColumnModel().getColumn(0).setMinWidth(0);
+        tblProductos.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblProductos.getColumnModel().getColumn(0).setWidth(0);
+    }
     private void OptionsMenu(){
         optionsMenu = new javax.swing.JPopupMenu();  
         
@@ -42,7 +114,7 @@ public class Menu extends javax.swing.JFrame {
         optionsMenu.add(itemCredits);
         
     }
-    
+    /*
     private void escalarYCentrarIcono(javax.swing.JLabel label, String rutaRecurso, int ancho, int alto) {
         java.net.URL imgURL = getClass().getResource(rutaRecurso);
         if (imgURL != null) {
@@ -57,8 +129,8 @@ public class Menu extends javax.swing.JFrame {
         } else {
             logger.log(java.util.logging.Level.WARNING, "No se encontró el recurso: " + rutaRecurso);
         }
-    }
-
+    }*/
+/*
     private void escalarTodosLosIconos() {
         int anchoIcono = 140; 
         int altoIcono = 110;
@@ -71,7 +143,7 @@ public class Menu extends javax.swing.JFrame {
         escalarYCentrarIcono(icon6, "/recursos/toys_icon.png", anchoIcono, altoIcono);
     }
     
-    
+    */
     
     
     @SuppressWarnings("unchecked")
@@ -80,25 +152,12 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnMenu = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        subPanel1 = new javax.swing.JPanel();
-        icon1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        subPanel2 = new javax.swing.JPanel();
-        icon2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        subPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        icon3 = new javax.swing.JLabel();
-        subPanel5 = new javax.swing.JPanel();
-        icon5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        subPanel6 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        icon6 = new javax.swing.JLabel();
-        subPanel4 = new javax.swing.JPanel();
-        icon4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        cmbCategorias = new javax.swing.JComboBox<>();
+        scrlProductos = new javax.swing.JScrollPane();
+        tblProductos = new javax.swing.JTable();
+        btnAgregarProducto = new javax.swing.JButton();
+        btnAgregarCategoria = new javax.swing.JButton();
+        btnVerDetalle = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,97 +172,30 @@ public class Menu extends javax.swing.JFrame {
         btnMenu.setFocusable(false);
         btnMenu.addActionListener(this::btnMenuActionPerformed);
 
-        jPanel2.setLayout(new java.awt.GridLayout(2, 3, 20, 20));
+        cmbCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCategorias.addActionListener(this::cmbCategoriasActionPerformed);
 
-        subPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        subPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
-        subPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrlProductos.setViewportView(tblProductos);
 
-        icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/tech_icon.png"))); // NOI18N
-        subPanel1.add(icon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 180, 120));
+        btnAgregarProducto.setText("Agregar producto");
+        btnAgregarProducto.addActionListener(this::btnAgregarProductoActionPerformed);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Electrónica");
-        jLabel2.setAlignmentX(0.5F);
-        subPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 250, 20));
+        btnAgregarCategoria.setText("Agregar categoría");
+        btnAgregarCategoria.addActionListener(this::btnAgregarCategoriaActionPerformed);
 
-        jPanel2.add(subPanel1);
-
-        subPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        subPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
-        subPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/book_icon.png"))); // NOI18N
-        subPanel2.add(icon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 180, 120));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Libros");
-        jLabel3.setAlignmentX(0.5F);
-        subPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 250, 20));
-
-        jPanel2.add(subPanel2);
-
-        subPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        subPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
-        subPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Hogar");
-        jLabel4.setAlignmentX(0.5F);
-        subPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 250, 20));
-
-        icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/house_icon.png"))); // NOI18N
-        subPanel3.add(icon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 180, 120));
-
-        jPanel2.add(subPanel3);
-
-        subPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        subPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
-        subPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/clothe_icon.png"))); // NOI18N
-        subPanel5.add(icon5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 180, 120));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Ropa");
-        jLabel6.setAlignmentX(0.5F);
-        subPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 250, 20));
-
-        jPanel2.add(subPanel5);
-
-        subPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        subPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
-        subPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Juguetes");
-        jLabel7.setAlignmentX(0.5F);
-        subPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 250, 20));
-
-        icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/toys_icon.png"))); // NOI18N
-        subPanel6.add(icon6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 180, 120));
-
-        jPanel2.add(subPanel6);
-
-        subPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        subPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 224, 230), 2, true));
-        subPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/beauty_icon.png"))); // NOI18N
-        subPanel4.add(icon4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 180, 120));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Belleza");
-        jLabel5.setAlignmentX(0.5F);
-        subPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 250, 20));
-
-        jPanel2.add(subPanel4);
+        btnVerDetalle.setText("Ver detalles");
+        btnVerDetalle.addActionListener(this::btnVerDetalleActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -212,40 +204,120 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(69, 69, 69)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrlProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnAgregarProducto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAgregarCategoria)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnVerDetalle))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addComponent(cmbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scrlProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregarProducto)
+                    .addComponent(btnAgregarCategoria)
+                    .addComponent(btnVerDetalle))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
+      /*  AgregarProducto ventana = new AgregarProducto();
+        ventana.setVisible(true);*/
+    }//GEN-LAST:event_btnAgregarProductoActionPerformed
+
+    private void cmbCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriasActionPerformed
+        if (cargandoCategorias) {
+            return;
+        }
+
+        Object itemSeleccionado = cmbCategorias.getSelectedItem();
+
+        if (itemSeleccionado == null) {
+            return;
+        }
+
+        String nombreCategoria = itemSeleccionado.toString();
+
+        if (nombreCategoria.equals("Todas las categorías")) {
+            cargarTodosLosProductos();
+            return;
+        }
+
+        CategoryDAO categoryDAO = new CategoryDAO();
+        List<Category> categorias = categoryDAO.listCategories();
+
+        for (Category categoria : categorias) {
+            if (categoria.getName().equals(nombreCategoria)) {
+                cargarProductosPorCategoria(categoria.getIdCategory());
+                break;
+            }
+        }
+    }//GEN-LAST:event_cmbCategoriasActionPerformed
+
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         optionsMenu.show(btnMenu, 0, btnMenu.getHeight());
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnAgregarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCategoriaActionPerformed
+  /*       AgregarCategoria ventana = new AgregarCategoria(this, true);
+        ventana.setVisible(true);
+
+        cargarCategorias();*/
+    }//GEN-LAST:event_btnAgregarCategoriaActionPerformed
+
+    private void btnVerDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleActionPerformed
+        int fila = tblProductos.getSelectedRow();
+
+    if (fila == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione un producto primero.");
+        return;
+    }
+
+    int idProducto = Integer.parseInt(tblProductos.getValueAt(fila, 0).toString());
+    model.User usuarioPrueba = new model.User();
+    usuarioPrueba.setIdUser(2);
+    usuarioPrueba.setUsername("usuario_prueba");
+    DetalleProducto ventana = new DetalleProducto(this, true, idProducto, usuarioPrueba);
+    ventana.setVisible(true);
+    cargarTodosLosProductos();
+    }//GEN-LAST:event_btnVerDetalleActionPerformed
 
     public static void main(String args[]) {
         
@@ -253,26 +325,13 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarCategoria;
+    private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnMenu;
-    private javax.swing.JLabel icon1;
-    private javax.swing.JLabel icon2;
-    private javax.swing.JLabel icon3;
-    private javax.swing.JLabel icon4;
-    private javax.swing.JLabel icon5;
-    private javax.swing.JLabel icon6;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton btnVerDetalle;
+    private javax.swing.JComboBox<String> cmbCategorias;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel subPanel1;
-    private javax.swing.JPanel subPanel2;
-    private javax.swing.JPanel subPanel3;
-    private javax.swing.JPanel subPanel4;
-    private javax.swing.JPanel subPanel5;
-    private javax.swing.JPanel subPanel6;
+    private javax.swing.JScrollPane scrlProductos;
+    private javax.swing.JTable tblProductos;
     // End of variables declaration//GEN-END:variables
 }

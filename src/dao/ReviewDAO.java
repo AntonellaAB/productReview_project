@@ -35,7 +35,8 @@ public class ReviewDAO {
             ps.setString(3, nuevaReview.getDate()); // Pasamos la fecha formateada
             // PEGA ESTA LÍNEA EN SU LUGAR:
             ps.setInt(4, nuevaReview.getUser().getIdUser()); // Pasamos el ID del usuario
-            ps.setInt(5, nuevaReview.getIdProduct()); // <- AGREGA ESTA LÍNEA
+            // ps.setInt(5, nuevaReview.getIdProduct());
+            ps.setInt(5, nuevaReview.getProduct().getIdProduct()); // <- AGREGA ESTA LÍNEA
             //ps.setInt(5, nuevaReview.getProducto().getIdProduct());
 
             // Ejecutamos la orden en la base de datos
@@ -59,7 +60,7 @@ public class ReviewDAO {
     public List<Review> obtenerReviewsPorProducto(int idProducto) {
         List<Review> lista = new ArrayList<>();
         // Buscamos los datos de la reseña y el nombre del usuario conectado
-        String sql = "SELECT r.id_review, u.name, r.comment, r.score "
+        String sql = "SELECT r.id_review, u.username, r.comment, r.score "
                 + "FROM reviews r "
                 + "JOIN users u ON r.id_user = u.id_user "
                 + "WHERE r.id_product = ?";
@@ -84,7 +85,7 @@ public class ReviewDAO {
                     r.setIdReview(rs.getInt("id_review"));
                     // Como la consulta nos trae el NOMBRE del usuario, creamos un objeto User temporal
                     User u = new User();
-                    u.setUsername(rs.getString("name")); // Sacamos el nombre de la columna 'name'
+                    u.setUsername(rs.getString("username")); // Sacamos el nombre de la columna 'name'
 
                     // Metemos ese usuario dentro de la reseña (recuerda que tu Review conoce al User)
                     r.setUser(u);

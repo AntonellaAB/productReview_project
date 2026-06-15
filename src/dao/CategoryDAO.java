@@ -43,4 +43,21 @@ public class CategoryDAO {
 
         return categories;
     }
+    public boolean addCategory(Category category) {
+        String sql = "INSERT INTO categories (name, description) VALUES (?, ?)";
+
+        try (
+            Connection conn = conexionDB.conectar();
+            PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
+            stmt.setString(1, category.getName());
+            stmt.setString(2, category.getDescription());
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            System.out.println("Error al agregar categoría: " + e.getMessage());
+            return false;
+        }
+    }
 }
